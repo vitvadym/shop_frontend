@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ErrorPage from './pages/404ErrorPage';
+import CartPage from './pages/CartPage';
+import ProductDetail from './pages/ProductDetailPage';
+import Home from './pages/HomePage';
+import { Toaster } from 'react-hot-toast';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Layout from './components/Layout';
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Paths } from './constants/constants';
+
+import ProductsList from './pages/ProductsList';
+import Favorites from './pages/Favorites';
+
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={Paths.HOME}
+            element={<Layout />}
+          >
+            <Route
+              index
+              element={<Home />}
+            />
+            <Route
+              path={Paths.CART}
+              element={<CartPage />}
+            />
+            <Route
+              path={Paths.FAVORITES}
+              element={<Favorites />}
+            />
+            <Route
+              path={Paths.PRODUCT_DETAIL}
+              element={<ProductDetail />}
+            />
+            <Route
+              path={Paths.PRODUCTS_LIST}
+              element={<ProductsList />}
+            />
+            <Route
+              path={Paths.ERROR}
+              element={<ErrorPage />}
+            />
+          </Route>
+        </Routes>
+        <Toaster
+          position='bottom-center'
+          toastOptions={{ duration: 1000 }}
+        />
+      </BrowserRouter>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,10 @@
+{
+  "arrowParens": "always",
+  "printWidth": 80,
+  "bracketSpacing": true,
+  "singleAttributePerLine": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "jsxSingleQuote": true,
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
